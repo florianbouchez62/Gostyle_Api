@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -79,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'msrpmobile',
-        'USER': 'root',
-        'PASSWORD': 'Froubert100!',
+        'USER': 'florianbouchez',
+        'PASSWORD': '29061999',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
