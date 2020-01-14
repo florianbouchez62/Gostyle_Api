@@ -4,6 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'articles', views.ArticleViewSet)
+router.register(r'promotions', views.PromotionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
