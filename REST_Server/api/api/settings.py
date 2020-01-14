@@ -25,7 +25,7 @@ SECRET_KEY = '9+pucyergttotynph)6=zssayp%wy&5026mfe+l+_ud9+8sh0d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.200']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'msrpmobile',
-        'USER': 'florianbouchez',
-        'PASSWORD': '29061999',
+        'USER': 'root',
+        'PASSWORD': 'Froubert100!',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
