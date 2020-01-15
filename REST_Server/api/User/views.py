@@ -5,9 +5,9 @@ from rest_framework import viewsets
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    queryset = Article.objects.all().order_by('libelle')
+    queryset = Article.objects.all().order_by('id')
     serializer_class = ArticleSerializer
 
 class PromotionViewSet(viewsets.ModelViewSet):
-    queryset = Promotion.objects.all()
+    queryset = Promotion.objects.all().order_by('id')
     serializer_class = PromotionSerializers
