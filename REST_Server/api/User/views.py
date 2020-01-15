@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .serializers import ArticleSerializer, PromotionSerializers
-from .models import Article, Promotion
+from .serializers import PromotionSerializers
+from .models import Promotion
 from rest_framework import viewsets
 
 class PromotionViewSet(viewsets.ModelViewSet):
