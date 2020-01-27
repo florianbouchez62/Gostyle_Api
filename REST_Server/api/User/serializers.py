@@ -1,14 +1,8 @@
 from rest_framework import serializers
 
-from .models import Article, Promotion
-
-
-class ArticleSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Article
-        fields = ('libelle', 'prix')
+from .models import Promotion
 
 class PromotionSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Promotion
-        fields = ('article', 'pourcentage', 'qrCode')
+        fields = ('id', 'libelle', 'start_date', 'end_date', 'pourcentage', 'description')
