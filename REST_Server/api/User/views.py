@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from .serializers import PromotionSerializers
 from .models import Promotion
