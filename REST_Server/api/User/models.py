@@ -6,3 +6,4 @@ class Promotion(models.Model):
     end_date = models.DateTimeField('Date fin', blank=True, null=True)
     pourcentage = models.FloatField("Pourcentage", default=1.0)
     description = models.TextField("Description", max_length=1200)
+
