@@ -44,4 +44,4 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        python3 manage.py test 
+        python3 REST_Server/api/manage.py test 
