@@ -86,13 +86,6 @@ DATABASES = {
         'PASSWORD': 'Froubert100!',
         'HOST': '127.0.0.1',
         'PORT': '3306',
-        'TEST': {
-            'NAME': 'msrptest',
-            'USER': 'root',
-            'PASSWORD': 'Froubert100!',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-        },
     }
 }
 
