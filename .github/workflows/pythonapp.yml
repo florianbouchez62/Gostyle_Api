@@ -44,5 +44,5 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -pFroubert100! -e "SHOW DATABASES" 
+        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -pFroubert100! -e "CREATE DATABASE msrpmobile" 
         python3 REST_Server/api/manage.py test 
