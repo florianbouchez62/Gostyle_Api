@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,16 +79,28 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'msrpmobile',
-        'USER': 'root',
-        'PASSWORD': 'Froubert100!',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
+if 'test' in sys.argv :
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': 'msrpmobile',
+           'USER': 'root',
+           'PASSWORD': 'Froubert100!',
+           'HOST': '127.0.0.1',
+           'PORT': '32768',
+       }
+   }
+else:
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': 'msrpmobile',
+           'USER': 'root',
+           'PASSWORD': 'Froubert100!',
+           'HOST': '127.0.0.1',
+           'PORT': '3306',
+       }
+   }
 
 
 # Password validation
