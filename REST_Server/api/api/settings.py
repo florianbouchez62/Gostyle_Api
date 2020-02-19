@@ -78,16 +78,28 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'msrpmobile',
-        'USER': 'root',
-        'PASSWORD': 'Froubert100!',
-        'HOST': '127.0.0.1',
-        'PORT': '32768',
-    }
-}
+if 'test' in sys.argv :
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': 'msrpmobile',
+           'USER': 'root',
+           'PASSWORD': 'Froubert100!',
+           'HOST': '127.0.0.1',
+           'PORT': '32768',
+       }
+   }
+else:
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': 'msrpmobile',
+           'USER': 'root',
+           'PASSWORD': 'Froubert100!',
+           'HOST': '127.0.0.1',
+           'PORT': '3306',
+       }
+   }
 
 
 # Password validation
