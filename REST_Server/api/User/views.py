@@ -5,5 +5,5 @@ from .models import Promotion
 from rest_framework import viewsets
 
 class PromotionViewSet(viewsets.ModelViewSet):
-    queryset = Promotion.objects.all().order_by('id')
+    queryset = Promotion.objects.filter(active=True).order_by('id')
     serializer_class = PromotionSerializers
