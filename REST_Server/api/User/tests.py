@@ -9,10 +9,10 @@ client = Client()
 class PromotionCreateObjectsTest(TestCase):
     
     def setUp(self):
-        Promotion.objects.create(libelle='test1Active', description='desc', active=True)
-        Promotion.objects.create(libelle='test2Active', description='desc', active=True)
-        Promotion.objects.create(libelle='testNotActive', description='desc', active=False)
-        Promotion.objects.create(libelle='testDefaultActive', description='desc')
+        Promotion.objects.create_promotion(libelle='test1Active', description='desc', active=True)
+        Promotion.objects.create_promotion(libelle='test2Active', description='desc', active=True)
+        Promotion.objects.create_promotion(libelle='testNotActive', description='desc', active=False)
+        Promotion.objects.create_promotion(libelle='testDefaultActive', description='desc')
     
     def test_everything_is_created(self):
         nbItems = Promotion.objects.all().count()
@@ -38,10 +38,10 @@ class PromotionCreateObjectsTest(TestCase):
 class GetPromotionObjectsTest(TestCase):
 
     def setUp(self):
-        self.promotionActive1 = Promotion.objects.create(libelle='test1Active', description='desc', active=True)
-        self.promotionActive2 = Promotion.objects.create(libelle='test2Active', description='desc', active=True)
-        self.promotionNotActive = Promotion.objects.create(libelle='testNotActive', description='desc', active=False)
-        self.promotionDefaultActive = Promotion.objects.create(libelle='testDefaultActive', description='desc')
+        self.promotionActive1 = Promotion.objects.create_promotion(libelle='test1Active', description='desc', active=True)
+        self.promotionActive2 = Promotion.objects.create_promotion(libelle='test2Active', description='desc', active=True)
+        self.promotionNotActive = Promotion.objects.create_promotion(libelle='testNotActive', description='desc', active=False)
+        self.promotionDefaultActive = Promotion.objects.create_promotion(libelle='testDefaultActive', description='desc')
         self.nb_objects = Promotion.objects.all().count()
 
     def test_get_all_promotions_statuscode_200(self):
