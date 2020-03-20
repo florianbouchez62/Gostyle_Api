@@ -9,10 +9,10 @@ client = Client()
 class PromotionCreateObjectsTest(TestCase):
     
     def setUp(self):
-        Promotion.objects.create(libelle='test1Active', description='desc', active=True)
-        Promotion.objects.create(libelle='test2Active', description='desc', active=True)
-        Promotion.objects.create(libelle='testNotActive', description='desc', active=False)
-        Promotion.objects.create(libelle='testDefaultActive', description='desc')
+        Promotion.objects.create(name='test1Active', description='desc', active=True)
+        Promotion.objects.create(name='test2Active', description='desc', active=True)
+        Promotion.objects.create(name='testNotActive', description='desc', active=False)
+        Promotion.objects.create(name='testDefaultActive', description='desc')
     
     def test_everything_is_created(self):
         nbItems = Promotion.objects.all().count()
@@ -26,22 +26,22 @@ class PromotionCreateObjectsTest(TestCase):
         nbNotActiveObjects = Promotion.objects.filter(active=False).count()
         self.assertEqual(nbNotActiveObjects, 2)
 
-    def test_object_default_pourcentage(self):
-        promotionObject = Promotion.objects.get(libelle='test1Active')
-        self.assertEqual(promotionObject.get_pourcentage(), 0.0)
+    def test_object_default_percentage(self):
+        promotionObject = Promotion.objects.get(name='test1Active')
+        self.assertEqual(promotionObject.get_percentage(), 0.0)
     
     def test_object_default_active(self):
-        promotionObject = Promotion.objects.get(libelle='testDefaultActive')
+        promotionObject = Promotion.objects.get(name='testDefaultActive')
         self.assertEqual(promotionObject.get_active(), False)
 
 
 class GetPromotionObjectsTest(TestCase):
 
     def setUp(self):
-        self.promotionActive1 = Promotion.objects.create(libelle='test1Active', description='desc', active=True)
-        self.promotionActive2 = Promotion.objects.create(libelle='test2Active', description='desc', active=True)
-        self.promotionNotActive = Promotion.objects.create(libelle='testNotActive', description='desc', active=False)
-        self.promotionDefaultActive = Promotion.objects.create(libelle='testDefaultActive', description='desc')
+        self.promotionActive1 = Promotion.objects.create(name='test1Active', description='desc', active=True)
+        self.promotionActive2 = Promotion.objects.create(name='test2Active', description='desc', active=True)
+        self.promotionNotActive = Promotion.objects.create(name='testNotActive', description='desc', active=False)
+        self.promotionDefaultActive = Promotion.objects.create(name='testDefaultActive', description='desc')
         self.nb_objects = Promotion.objects.all().count()
 
     def test_get_all_promotions_statuscode_200(self):
@@ -52,7 +52,7 @@ class GetPromotionObjectsTest(TestCase):
     
     def test_get_single_promotion_statuscode_200(self):
         response = client.get('/promotions/{}/'.format(self.promotionActive1.pk))
-        promotion = Promotion.objects.get(libelle='test1Active')
+        promotion = Promotion.objects.get(name='test1Active')
         serializer = PromotionSerializers(promotion, many=False)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -64,7 +64,7 @@ class GetPromotionObjectsTest(TestCase):
 
     def test_get_valid_single_promotion(self):
         response = client.get('/promotions/{}/'.format(self.promotionActive1.pk ))
-        promotion = Promotion.objects.get(libelle='test1Active')
+        promotion = Promotion.objects.get(name='test1Active')
         serializer = PromotionSerializers(promotion)
         self.assertEqual(response.data, serializer.data)
 
