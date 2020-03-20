@@ -1,18 +1,7 @@
 from django.db import models
-
-class PromotionManager(models.Manager):
-    
-    def create_promotion(self, libelle, description, start_date=None, end_date=None, pourcentage=0.0, image=None, active=False):
-        promotion = Promotion.objects.create(
-            libelle=libelle, 
-            start_date=start_date,
-            end_date=end_date,
-            pourcentage=pourcentage,
-            description=description,
-            image=image,
-            active=active
-        )
-        return promotion
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 class Promotion(models.Model):
@@ -20,12 +9,18 @@ class Promotion(models.Model):
     description = models.TextField("Description", max_length=1200)
     start_date = models.DateTimeField('Date début', null=True)
     end_date = models.DateTimeField('Date fin', null=True)
-    pourcentage = models.FloatField("Pourcentage", default=0.0)
+    pourcentage = models.FloatField("Pourcentage", default=0.0, validators=[MinValueValidator(0.0), MaxValueValidator(100.0)])
     image = models.ImageField('Image', blank=True, null=True)
     active = models.BooleanField('Active?', default=False)
 
-    objects = PromotionManager()
-
+    def clean(self):
+        cleaned_data = super().clean()
+        if self.start_date <= timezone.now():
+            raise ValidationError('The start date must be greater than the current date.')
+        if (self.start_date >= self.end_date):
+            raise ValidationError('The end date must be greater than the start date.')
+        return cleaned_data
+#
     def get_promotion_libelle(self):
         return self.libelle
     
