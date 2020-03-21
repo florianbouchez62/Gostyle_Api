@@ -3,10 +3,10 @@
         "model": "User.Promotion",
         "pk": 1,
         "fields": {
-            "libelle": "Iphone gratuit",
+            "name": "Iphone gratuit",
             "start_date": "2020-02-01T00:00:00+00:00",
             "end_date": "2020-03-01T00:00:00+00:00",
-            "pourcentage": 10.0,
+            "percentage": 10.0,
             "description": "Regardez moi ce bel Iphone, il est en promo !!!"
         }
     },
@@ -14,10 +14,10 @@
         "model": "User.Promotion",
         "pk": 2,
         "fields": {
-            "libelle": "Poelle",
+            "name": "Poelle",
             "start_date": "2020-03-01T00:00:00+00:00",
             "end_date": "2020-04-01T00:00:00+00:00",
-            "pourcentage": 100.0,
+            "percentage": 100.0,
             "description": "Avec cette poêle, tu peux tout faire ! Encore plus quand c'est une promo comme ça !"
         }
     }
