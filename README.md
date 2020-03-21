@@ -61,6 +61,12 @@ pip3 install -r requirements.txt
 
 Ajouter des captures d'écran.
 
+Generate defaults promotions.
+
+```
+python3 manage.py loaddata Fixtures/initial_data.json
+```
+
 ## License
 
 > [@florianbouchez62](https://github.com/florianbouchez62) &nbsp;&middot;&nbsp;
