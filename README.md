@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://img.gentside.com/article/humour/a-style-est-un-logo-d-une-boutique-de-vetements-on-se-demande-bien-ce-qu-on-peut-y-vendre_e986ae94aee5ff1d756283453a67450faf195d6e.jpg" alt="GoStyle" width="200">
+  <img src="https://static.djangoproject.com/img/logos/django-logo-negative.png" alt="GoStyle" width="200">
   <br>
   GoStyle API
   <br>
