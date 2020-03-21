@@ -10,6 +10,7 @@
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
+  <a href="#requirements">Requirements</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#usage-example">Usage example</a> •
   <a href="#license">License</a>
@@ -21,7 +22,15 @@
 * get all promotions.
 * get single promotion.
 
-## How to use
+## Requirements
+
+There is some requirements to use it ...
+
+* Python3 & Pip3
+* Django latest version
+
+
+## How to use it ?
 
 * Windows
 
@@ -38,6 +47,18 @@ cd Gostyle_api/REST_server/api
 
 # Install requirements.
 pip3 install -r requirements.txt
+
+# You need to create the migrations file.
+python3 manage.py makemigrations
+
+# After this, migrate it
+python3 manage.py migrate
+
+# If its the first time, you can run this to load defaults datas.
+python3 manage.py loaddata Fixtures/initial_data.json
+
+# Now its time to run it.
+python3 manage.py runserver
 ```
 
 * OS X & Linux
@@ -55,17 +76,23 @@ cd Gostyle_api/REST_server/api
 
 # Install requirements.
 pip3 install -r requirements.txt
+
+# You need to create the migrations file.
+python3 manage.py makemigrations
+
+# After this, migrate it
+python3 manage.py migrate
+
+# If its the first time, you can run this to load defaults datas.
+python3 manage.py loaddata Fixtures/initial_data.json
+
+# Now its time to run it.
+python3 manage.py runserver
 ```
 
 ## Usage example
 
 Ajouter des captures d'écran.
-
-Generate defaults promotions.
-
-```
-python3 manage.py loaddata Fixtures/initial_data.json
-```
 
 ## License
 
