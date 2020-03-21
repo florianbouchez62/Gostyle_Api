@@ -28,7 +28,7 @@ There is some requirements to use it ...
 
 * Python3 & Pip3
 * Django latest version
-
+* MySql
 
 ## How to use it ?
 
@@ -47,6 +47,17 @@ cd Gostyle_api/REST_server/api
 
 # Install requirements.
 pip3 install -r requirements.txt
+
+# You need to start mysql and change /api/settings.py.
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'your_mysql_database_name',
+    'USER': 'your_mysql_user',
+    'PASSWORD': 'your_mysql_password',
+    'HOST': '127.0.0.1',
+    'PORT': '3306',
+   }
 
 # You need to create the migrations file.
 python3 manage.py makemigrations
@@ -76,6 +87,17 @@ cd Gostyle_api/REST_server/api
 
 # Install requirements.
 pip3 install -r requirements.txt
+
+# You need to start mysql and change /api/settings.py.
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'your_mysql_database_name',
+    'USER': 'your_mysql_user',
+    'PASSWORD': 'your_mysql_password',
+    'HOST': '127.0.0.1',
+    'PORT': '3306',
+   }
 
 # You need to create the migrations file.
 python3 manage.py makemigrations
