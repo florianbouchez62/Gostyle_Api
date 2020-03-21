@@ -11,7 +11,7 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#requirements">Requirements</a> •
-  <a href="#how-to-use">How To Use</a> •
+  <a href="#how-to-use-it-?">How To Use</a> •
   <a href="#usage-example">Usage example</a> •
   <a href="#license">License</a>
 </p>
