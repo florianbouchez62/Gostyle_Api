@@ -4,6 +4,6 @@ from django.contrib.auth.models import User
 from .models import Promotion
 
 
-# Register your models here.
-
-admin.site.register(Promotion)
+@admin.register(Promotion)
+class PromotionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'start_date', 'end_date', 'percentage', 'image', 'active')
