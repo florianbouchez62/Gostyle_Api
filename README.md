@@ -11,7 +11,7 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#usage-example">Download</a> •
+  <a href="#usage-example">Usage example</a> •
   <a href="#license">License</a>
 </p>
 
@@ -59,4 +59,12 @@ pip3 install -r requirements.txt
 
 ## Usage example
 
+Ajouter des captures d'écran.
+
 ## License
+
+> [@florianbouchez62](https://github.com/florianbouchez62) &nbsp;&middot;&nbsp;
+> [@lucaslemaire](https://github.com/lucaslemaire) &nbsp;&middot;&nbsp;
+> [@Maximus40](https://github.com/Maximus40) &nbsp;&middot;&nbsp;
+> [@Azelaek](https://github.com/Azelaek) &nbsp;&middot;&nbsp;
+> [@fkiecken](https://github.com/fkiecken) &nbsp;&middot;&nbsp;
