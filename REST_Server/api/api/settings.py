@@ -30,6 +30,8 @@ DEBUG = True
 
 ADMIN_SITE_HEADER = "Gostyle administration"
 
+BASE_URL = "http://127.0.0.1:8000/"
+
 ALLOWED_HOSTS = ['*']
 
 FIXTURE_DIRS = (
