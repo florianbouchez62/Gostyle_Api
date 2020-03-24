@@ -31,10 +31,9 @@ class Promotion(models.Model):
         return cleaned_data
     
     def save(self, *args, **kwargs):
-        if not self.pk:
-            super(Promotion, self).save(*args, **kwargs)
-            if not 'test' in sys.argv:
-                self.generate_qrcode()
+        if not self.pk and not 'test' in sys.argv:
+            self.generate_qrcode()
+        super(Promotion, self).save(*args, **kwargs)
 
     def generate_qrcode(self):
         qr = qrcode.QRCode(
@@ -49,7 +48,7 @@ class Promotion(models.Model):
         filename = 'qrcode_promotion_{}.png'.format(self.pk)
 
         img = qr.make_image()
-        img.save('media/' + filename)
+        img.save('Media/' + filename)
 
     def get_promotion_name(self):
         return self.name
