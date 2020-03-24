@@ -99,7 +99,7 @@ if 'test' in sys.argv :
            'USER': 'root',
            'PASSWORD': 'Froubert100!',
            'HOST': '127.0.0.1',
-           'PORT': '32768',
+           'PORT': '3306',
        }
    }
 else:
