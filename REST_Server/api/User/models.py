@@ -33,8 +33,7 @@ class Promotion(models.Model):
     def save(self, *args, **kwargs):
         if not self.pk:
             super(Promotion, self).save(*args, **kwargs)
-            if not 'test' in sys.argv:
-                self.generate_qrcode()
+            self.generate_qrcode()
 
     def generate_qrcode(self):
         qr = qrcode.QRCode(
