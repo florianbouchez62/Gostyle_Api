@@ -1,5 +1,8 @@
 from django.apps import AppConfig
 
 
-class QuickstartConfig(AppConfig):
-    name = 'quickstart'
+class UserConfig(AppConfig):
+    name = 'User'
+
+    def ready(self):
+        import User.signals

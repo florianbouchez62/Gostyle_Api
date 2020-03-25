@@ -2,14 +2,6 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from django.core.files.uploadedfile import InMemoryUploadedFile
-from io import StringIO
-from django.conf import settings
-import qrcode
-import sys
-
-def qrcode_location(instance, filename):
-    return '%s/qr_codes/%s/' % (instance.user.username, filename)
 
 
 class Promotion(models.Model):
@@ -19,7 +11,7 @@ class Promotion(models.Model):
     end_date = models.DateTimeField('End date', null=True)
     percentage = models.FloatField("Percentage", default=0.0, validators=[MinValueValidator(0.0), MaxValueValidator(100.0)])
     image = models.ImageField('Image', blank=True, null=True)
-    qrcode = models.ImageField(upload_to=qrcode_location, blank=True, null=True)
+    qrcode = models.ImageField(upload_to='', blank=True, null=True)
     active = models.BooleanField('Active ?', default=False)
 
     def clean(self):
@@ -29,26 +21,6 @@ class Promotion(models.Model):
         if (self.start_date >= self.end_date):
             raise ValidationError('The end date must be greater than the start date.')
         return cleaned_data
-    
-    def save(self, *args, **kwargs):
-        if not self.pk and not 'test' in sys.argv:
-            self.generate_qrcode()
-        super(Promotion, self).save(*args, **kwargs)
-
-    def generate_qrcode(self):
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=10,
-            border=4,
-        )
-        qr.add_data(settings.BASE_URL + 'promotions/{}/'.format(self.pk))
-        qr.make(fit=True)
-
-        filename = 'qrcode_promotion_{}.png'.format(self.pk)
-
-        img = qr.make_image()
-        img.save('Media/' + filename)
 
     def get_promotion_name(self):
         return self.name
