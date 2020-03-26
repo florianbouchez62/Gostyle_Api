@@ -24,6 +24,15 @@ class PromotionAdmin(admin.ModelAdmin):
 
         return fieldsets
 
+    def delete_model(self, request, object):
+        obj.delete_medias()
+        obj.delete()
+
+    def delete_queryset(self, request, queryset):
+        for obj in queryset:
+            obj.delete_medias()
+            obj.delete()
+
     def qrcode_image(self, obj):
         return mark_safe('<img src="/{}" width="200" height="200" />'.format(obj.qrcode))
 
