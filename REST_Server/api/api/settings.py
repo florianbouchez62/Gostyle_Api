@@ -42,7 +42,10 @@ FIXTURE_DIRS = (
 PROJECT_ROOT = dirname(PROJECT_DIR)
 
 # collect media files here
-MEDIA_ROOT = join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = join(PROJECT_ROOT, 'Media')
+
+# the URL for media files
+MEDIA_URL = '/Media/'
 
 # Application definition
 

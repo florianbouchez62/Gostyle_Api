@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-
+import os
 
 class Promotion(models.Model):
     name = models.CharField("Name", max_length=255, unique=True)
@@ -10,7 +10,8 @@ class Promotion(models.Model):
     start_date = models.DateTimeField('Start date', null=True)
     end_date = models.DateTimeField('End date', null=True)
     percentage = models.FloatField("Percentage", default=0.0, validators=[MinValueValidator(0.0), MaxValueValidator(100.0)])
-    image = models.ImageField('Image', blank=True, null=True)
+    image = models.ImageField('Image', upload_to='Images',blank=True, null=True)
+    qrcode = models.ImageField(upload_to='Qrcode', blank=True, null=True)
     active = models.BooleanField('Active ?', default=False)
 
     def clean(self):
@@ -32,3 +33,10 @@ class Promotion(models.Model):
 
     def __repr__(self):
         return self.name + " added."
+    
+    def delete_medias(self):
+        try:
+            os.remove(str(self.qrcode))
+            os.remove(self.image.url)
+        except:
+            pass
