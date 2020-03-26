@@ -13,8 +13,12 @@ class PromotionSerializers(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'start_date', 'end_date', 'percentage', 'image', 'base64_image','description')
 
     def get_base64_image(self, obj):
-        f = open('Media/' + str(obj.image), 'rb')
-        image = File(f)
-        data = base64.b64encode(image.read())
-        f.close()
-        return data
+        try:
+            f = open('Media/' + str(obj.image), 'rb')
+            image = File(f)
+            data = base64.b64encode(image.read())
+            f.close()
+            return data
+        except:
+            return ''
+

@@ -46,28 +46,12 @@ class GetPromotionObjectsTest(TestCase):
 
     def test_get_all_promotions_statuscode_200(self):
         response = client.get('/promotions/')
-        promotions = Promotion.objects.filter(active=True)
-        serializer = PromotionSerializers(promotions, many=True)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
     
     def test_get_single_promotion_statuscode_200(self):
         response = client.get('/promotions/{}/'.format(self.promotionActive1.pk))
-        promotion = Promotion.objects.get(name='test1Active')
-        serializer = PromotionSerializers(promotion, many=False)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_get_all_promotions_objects(self):
-        response = client.get('/promotions/')
-        promotions = Promotion.objects.filter(active=True)
-        serializer = PromotionSerializers(promotions, many=True)
-        self.assertEqual(response.data, serializer.data)
-
-    def test_get_valid_single_promotion(self):
-        response = client.get('/promotions/{}/'.format(self.promotionActive1.pk ))
-        promotion = Promotion.objects.get(name='test1Active')
-        serializer = PromotionSerializers(promotion)
-        self.assertEqual(response.data, serializer.data)
-
     def test_get_invalid_single_promotion(self):
-        response = client.get('/promotions/{}/'.format(self.nb_objects+1))
+        response = client.get('/promotions/-1/')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
