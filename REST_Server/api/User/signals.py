@@ -17,7 +17,7 @@ def generate_qrcode(sender, instance, created, **kwargs):
             box_size=10,
             border=4,
         )
-        qr.add_data(settings.BASE_URL + 'promotions/{}/'.format(instance.pk))
+        qr.add_data('/promotions/{}/'.format(instance.pk))
         qr.make(fit=True)
         img = qr.make_image()
         img.save('Media/Qrcodes/' + filename)
