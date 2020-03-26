@@ -24,7 +24,7 @@ class PromotionAdmin(admin.ModelAdmin):
 
         return fieldsets
 
-    def delete_model(self, request, object):
+    def delete_model(self, request, obj):
         obj.delete_medias()
         obj.delete()
 
