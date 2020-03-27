@@ -10,9 +10,6 @@ class PromotionAdmin(admin.ModelAdmin):
     readonly_fields = ["qrcode_image"]
     exclude = ('qrcode',)
 
-    class Media:
-        js = ('js/test.js',)
-
     def get_fieldsets(self, request, obj=None) -> tuple:
         fieldsets = super(PromotionAdmin, self).get_fieldsets(request, obj)
         default_fieldsets = (
