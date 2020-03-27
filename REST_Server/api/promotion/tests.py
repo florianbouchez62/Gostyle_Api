@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from rest_framework import status
-from User.models import Promotion
-from User.serializers import PromotionSerializers
+from promotion.models import Promotion
+from promotion.serializers import PromotionSerializers
 
 client = Client()
 
@@ -28,11 +28,11 @@ class PromotionCreateObjectsTest(TestCase):
 
     def test_object_default_percentage(self):
         promotionObject = Promotion.objects.get(name='test1Active')
-        self.assertEqual(promotionObject.get_percentage(), 0.0)
+        self.assertEqual(promotionObject.get_promotion_percentage(), 0.0)
     
     def test_object_default_active(self):
         promotionObject = Promotion.objects.get(name='testDefaultActive')
-        self.assertEqual(promotionObject.get_active(), False)
+        self.assertEqual(promotionObject.get_promotion_active(), False)
 
 
 class GetPromotionObjectsTest(TestCase):

@@ -35,17 +35,17 @@ BASE_URL = "http://127.0.0.1:8000/"
 ALLOWED_HOSTS = ['*']
 
 FIXTURE_DIRS = (
-   '/Fixture/',
+   '/fixture/',
 )
 
 # fetch the project_root
 PROJECT_ROOT = dirname(PROJECT_DIR)
 
 # collect media files here
-MEDIA_ROOT = join(PROJECT_ROOT, 'Media')
+MEDIA_ROOT = join(PROJECT_ROOT, 'media')
 
 # the URL for media files
-MEDIA_URL = '/Media/'
+MEDIA_URL = '/media/'
 
 # collect static files here
 STATIC_ROOT = join(PROJECT_ROOT, 'run', 'static')
@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'User',
+    'promotion',
     'rest_framework',
 ]
 
