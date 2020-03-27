@@ -3,14 +3,15 @@ from django.contrib import admin
 from .models import Promotion
 
 
-
-
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'description', 'start_date', 'end_date', 'percentage', 'active',)
+    list_display = ('id', 'name', 'description', 'start_date', 'end_date', 'percentage', 'active')
+    list_filter = ('start_date', 'end_date', 'active')
     readonly_fields = ["qrcode_image"]
     exclude = ('qrcode',)
-    list_filter = ('start_date', 'end_date', 'active')
+
+    class Media:
+        js = ('js/test.js',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(PromotionAdmin, self).get_fieldsets(request, obj)
