@@ -47,6 +47,21 @@ MEDIA_ROOT = join(PROJECT_ROOT, 'Media')
 # the URL for media files
 MEDIA_URL = '/Media/'
 
+# collect static files here
+STATIC_ROOT = join(PROJECT_ROOT, 'run', 'static')
+
+
+# look for static assets here
+STATICFILES_DIRS = [
+    join(PROJECT_ROOT, 'static'),
+]
+
+# look for templates here
+# This is an internal setting, used in the TEMPLATES directive
+PROJECT_TEMPLATES = [
+    join(PROJECT_ROOT, 'templates'),
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -75,7 +90,7 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': PROJECT_TEMPLATES,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
