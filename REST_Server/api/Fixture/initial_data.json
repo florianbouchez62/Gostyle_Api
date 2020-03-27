@@ -1,6 +1,6 @@
 [
     {
-        "model": "User.Promotion",
+        "model": "promotion.Promotion",
         "pk": 1,
         "fields": {
             "name": "Iphone gratuit",
@@ -11,7 +11,7 @@
         }
     },
     {
-        "model": "User.Promotion",
+        "model": "promotion.Promotion",
         "pk": 2,
         "fields": {
             "name": "Poelle",
