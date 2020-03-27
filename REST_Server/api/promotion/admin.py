@@ -10,10 +10,8 @@ class PromotionAdmin(admin.ModelAdmin):
     readonly_fields = ["qrcode_image"]
     exclude = ('qrcode',)
 
-
     class Media:
         js = ('js/test.js',)
-
 
     def get_fieldsets(self, request, obj=None) -> tuple:
         fieldsets = super(PromotionAdmin, self).get_fieldsets(request, obj)
@@ -30,7 +28,6 @@ class PromotionAdmin(admin.ModelAdmin):
 
         return fieldsets
 
-
     def delete_model(self, request, obj) -> None:
         obj.delete_medias()
         obj.delete()
@@ -39,7 +36,6 @@ class PromotionAdmin(admin.ModelAdmin):
         for obj in queryset:
             obj.delete_medias()
             obj.delete()
-
 
     def qrcode_image(self, obj):
         return mark_safe('<img src="/{}" width="200" height="200" />'.format(obj.qrcode))

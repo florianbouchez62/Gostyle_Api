@@ -5,14 +5,12 @@ import base64
 
 
 class PromotionSerializers(serializers.HyperlinkedModelSerializer):
-    
-    base64_image = serializers.SerializerMethodField()
 
+    base64_image = serializers.SerializerMethodField()
 
     class Meta:
         model = Promotion
         fields = ('id', 'name', 'description', 'start_date', 'end_date', 'percentage', 'base64_image')
-
 
     def get_base64_image(self, obj) -> str:
         try:
@@ -20,6 +18,5 @@ class PromotionSerializers(serializers.HyperlinkedModelSerializer):
                 image = File(open_image)
                 data = base64.b64encode(image.read())
             return data
-        except:
+        except Exception:
             return ''
-

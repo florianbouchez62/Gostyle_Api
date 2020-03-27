@@ -10,8 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-from os.path import abspath, basename, dirname, join
-import os
+from os.path import abspath, dirname, join
 import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -109,28 +108,28 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if 'test' in sys.argv :
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'msrpmobile',
-           'USER': 'root',
-           'PASSWORD': 'Froubert100!',
-           'HOST': '127.0.0.1',
-           'PORT': '32768',
-       }
-   }
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'msrpmobile',
+            'USER': 'root',
+            'PASSWORD': 'Froubert100!',
+            'HOST': '127.0.0.1',
+            'PORT': '32768',
+        }
+    }
 else:
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'msrpmobile',
-           'USER': 'root',
-           'PASSWORD': 'Froubert100!',
-           'HOST': '127.0.0.1',
-           'PORT': '3306',
-       }
-   }
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'msrpmobile',
+            'USER': 'root',
+            'PASSWORD': 'Froubert100!',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation

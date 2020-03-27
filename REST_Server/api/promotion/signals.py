@@ -7,7 +7,7 @@ import sys
 
 @receiver(post_save, sender=Promotion)
 def generate_qrcode(sender, instance, created, **kwargs) -> None:
-    if created and not 'test' in sys.argv:
+    if created and 'test' not in sys.argv:
         qrcode_filename = 'qrcode_promotion_{}.png'.format(instance.pk)
         qr = qrcode.QRCode(
             version=1,

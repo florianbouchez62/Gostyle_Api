@@ -15,7 +15,6 @@ class Promotion(models.Model):
     qrcode = models.ImageField(upload_to='Qrcode', blank=True, null=True)
     active = models.BooleanField('Active ?', default=False)
 
-
     def clean(self) -> None:
         cleaned_data = super().clean()
         if self.start_date <= datetime.date.today():
@@ -30,35 +29,29 @@ class Promotion(models.Model):
             elif not self.image:
                 raise ValidationError('Image is missing to activate the promotion. You must uncheck the active\
                                         checkbox or be sure to have both image and qrcode.')
-        
-        return cleaned_data
 
+        return cleaned_data
 
     def check_empty_fields(self) -> bool:
         if not os.path.isfile(str(self.qrcode)) or not self.image:
             return True
         return False
 
-
     def get_promotion_name(self) -> str:
         return self.name
-
 
     def get_promotion_percentage(self) -> float:
         return self.percentage
 
-
     def get_promotion_active(self) -> bool:
         return self.active
 
-
     def __repr__(self) -> str:
         return self.name + " added."
-
 
     def delete_medias(self) -> None:
         try:
             os.remove(self.image.url)
             os.remove(str(self.qrcode))
-        except:
+        except Exception:
             pass

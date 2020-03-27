@@ -1,7 +1,6 @@
 from django.test import TestCase, Client
 from rest_framework import status
 from promotion.models import Promotion
-from promotion.serializers import PromotionSerializers
 
 client = Client()
 
