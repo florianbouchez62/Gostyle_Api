@@ -28,6 +28,10 @@ SECRET_KEY = '9+pucyergttotynph)6=zssayp%wy&5026mfe+l+_ud9+8sh0d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ADMIN_SITE_HEADER = "Gostyle administration"
+
+BASE_URL = "http://127.0.0.1:8000/"
+
 ALLOWED_HOSTS = ['*']
 
 FIXTURE_DIRS = (
@@ -38,7 +42,25 @@ FIXTURE_DIRS = (
 PROJECT_ROOT = dirname(PROJECT_DIR)
 
 # collect media files here
-MEDIA_ROOT = join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = join(PROJECT_ROOT, 'Media')
+
+# the URL for media files
+MEDIA_URL = '/Media/'
+
+# collect static files here
+STATIC_ROOT = join(PROJECT_ROOT, 'run', 'static')
+
+
+# look for static assets here
+STATICFILES_DIRS = [
+    join(PROJECT_ROOT, 'static'),
+]
+
+# look for templates here
+# This is an internal setting, used in the TEMPLATES directive
+PROJECT_TEMPLATES = [
+    join(PROJECT_ROOT, 'templates'),
+]
 
 # Application definition
 
@@ -68,7 +90,7 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': PROJECT_TEMPLATES,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
