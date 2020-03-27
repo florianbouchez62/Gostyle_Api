@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://static.djangoproject.com/img/logos/django-logo-negative.png" alt="GoStyle" width="200">
+  <img src="https://github.com/florianbouchez62/Gostyle_Api/blob/develop/REST_Server/api/static/logo.png" alt="GoStyle" width="200">
   <br>
   GoStyle API
   <br>
