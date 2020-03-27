@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 from os.path import abspath, dirname, join
 import sys
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(dirname(abspath(__file__)))
@@ -22,14 +23,12 @@ PROJECT_DIR = dirname(__file__)
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9+pucyergttotynph)6=zssayp%wy&5026mfe+l+_ud9+8sh0d'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 ADMIN_SITE_HEADER = "Gostyle administration"
-
-BASE_URL = "http://127.0.0.1:8000/"
 
 ALLOWED_HOSTS = ['*']
 
@@ -48,7 +47,6 @@ MEDIA_URL = '/media/'
 
 # collect static files here
 STATIC_ROOT = join(PROJECT_ROOT, 'run', 'static')
-
 
 # look for static assets here
 STATICFILES_DIRS = [
@@ -104,7 +102,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -112,25 +109,24 @@ if 'test' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'msrpmobile',
-            'USER': 'root',
-            'PASSWORD': 'Froubert100!',
-            'HOST': '127.0.0.1',
-            'PORT': '32768',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT_TEST'),
         }
     }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'msrpmobile',
-            'USER': 'root',
-            'PASSWORD': 'Froubert100!',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -150,7 +146,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -163,7 +158,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
