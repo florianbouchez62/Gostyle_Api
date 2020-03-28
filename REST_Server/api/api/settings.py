@@ -71,7 +71,6 @@ INSTALLED_APPS = [
     'promotion',
     'rest_framework',
     'rest_framework.authtoken',
-
 ]
 
 REST_FRAMEWORK = {

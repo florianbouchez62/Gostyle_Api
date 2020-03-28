@@ -1,6 +1,6 @@
 from .serializers import PromotionSerializers
 from .models import Promotion
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets
 
 
 class PromotionViewSet(viewsets.ModelViewSet):
