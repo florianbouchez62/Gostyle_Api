@@ -15,11 +15,11 @@ groups = {
     },
     'Gestionnaires': {
         'permissions': ['view', 'add', 'delete', 'change'],
-        'models': ['Promotion',],
+        'models': ['Promotion'],
         'users': ['Maurice', 'Vanessa'],
     },
     'Users': {
-        'permissions': ['view',],
+        'permissions': ['view'],
         'models': ['Promotion'],
         'users': ['Maxime', 'Mohamed']
     },
@@ -54,7 +54,7 @@ def populate_models(sender, **kwargs):
                     model_add_perm = create_permission(permission, model)
                     new_group.permissions.add(model_add_perm)
             for user in groups[group]['users']:
-                if group == "Admins":   
+                if group == "Admins":
                     name_user = create_admin(user)
                 else:
                     name_user = create_user(user)
@@ -62,6 +62,7 @@ def populate_models(sender, **kwargs):
             logging.warning("{} groupp is created !".format(group))
         else:
             logging.warning("Groups {} already created !".format(group))
+
 
 def create_permission(permission, model):
     name_permission = 'Can {} {}'.format(permission, model)
@@ -73,6 +74,7 @@ def create_permission(permission, model):
 
     return model_add_perm
 
+
 def create_user(user):
     name_user = User.objects.create_user( 
         username=user,
@@ -81,6 +83,7 @@ def create_user(user):
         is_staff=True
     )
     return name_user
+
 
 def create_admin(user):
     name_admin = User.objects.create_superuser( 
