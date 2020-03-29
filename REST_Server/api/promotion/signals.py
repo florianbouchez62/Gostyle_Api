@@ -9,6 +9,7 @@ from .models import Promotion
 import qrcode
 import sys
 import logging
+import json
 
 groups = {
     'Admins': {
@@ -41,8 +42,8 @@ def generate_qrcode(sender, instance, created, **kwargs) -> None:
             border=4,
         )
         token, token_created = Token.objects.get_or_create(user=currentUser)
-        data = "{'token': {}, 'url': '/promotions/{}/'}".format(token, instance.pk)
-        qr.add_data(data)
+        data = {'token': token.key, 'url': '/promotions/{}/'.format(instance.pk)}
+        qr.add_data(json.dumps(data))
         qr.make(fit=True)
         img = qr.make_image()
         img.save('media/Qrcodes/' + qrcode_filename)
