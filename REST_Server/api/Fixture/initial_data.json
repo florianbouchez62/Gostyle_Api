@@ -3,22 +3,55 @@
         "model": "promotion.Promotion",
         "pk": 1,
         "fields": {
-            "name": "Iphone gratuit",
-            "start_date": "2020-02-01T00:00:00+00:00",
-            "end_date": "2020-03-01T00:00:00+00:00",
-            "percentage": 10.0,
-            "description": "Regardez moi ce bel Iphone, il est en promo !!!"
+            "name": "Iphone 11 Pro Max",
+            "description": "Regardez moi ce bel Iphone, il est en promo !!!",
+            "start_date": "2020-11-01",
+            "end_date": "2020-12-01",
+            "percentage": 10.0
         }
     },
     {
         "model": "promotion.Promotion",
         "pk": 2,
         "fields": {
-            "name": "Poelle",
-            "start_date": "2020-03-01T00:00:00+00:00",
-            "end_date": "2020-04-01T00:00:00+00:00",
-            "percentage": 100.0,
-            "description": "Avec cette poêle, tu peux tout faire ! Encore plus quand c'est une promo comme ça !"
+            "name": "Poêle Tefal Talent Pro 28 cm",
+            "description": "Regardez moi cette bellle Poêle de 28 cm tout de même !",
+            "start_date": "2020-12-01",
+            "end_date": "2021-01-01",
+            "percentage": 5.0
+        }
+    },
+    {
+        "model": "promotion.Promotion",
+        "pk": 3,
+        "fields": {
+            "name": "Lot de 3 casseroles Ingénio Expertise 16, 18 et 20 cm + poignée",
+            "description": "Attention ! Avec cette promotion, impossible de ne pas passer à la casserole !",
+            "start_date": "2020-10-01",
+            "end_date": "2020-11-01",
+            "percentage": 30.0
+        }
+    },
+    {
+        "model": "promotion.Promotion",
+        "pk": 4,
+        "fields": {
+            "name": "Roquette 100g.",
+            "description": "La salade préférée des tennismen est en promotion !",
+            "start_date": "2020-10-01",
+            "end_date": "2020-11-01",
+            "percentage": 20.0
+        }
+    },
+    {
+        "model": "promotion.Promotion",
+        "pk": 5,
+        "fields": {
+            "name": "10 Pains au chocolat 350g;",
+            "description": "Vite ! Ils se vendent comme des petits pains !",
+            "start_date": "2020-09-01",
+            "end_date": "2020-10-01",
+            "percentage": 15.0
         }
     }
 ]
