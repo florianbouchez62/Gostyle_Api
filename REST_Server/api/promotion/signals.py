@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User, Group, Permission
-from .middleware import get_request
 from django.contrib.auth import get_user
 from django.contrib.sessions.models import Session
 from rest_framework.authtoken.models import Token
@@ -27,13 +26,17 @@ groups = {
         'models': ['Promotion'],
         'users': ['Maxime', 'Mohamed']
     },
+    'Applications': {
+        'permissions': ['view'],
+        'models': ['Promotion'],
+        'users': ['Application']
+    }, 
 }
 
 
 @receiver(post_save, sender=Promotion)
 def generate_qrcode(sender, instance, created, **kwargs) -> None:
     if created and 'test' not in sys.argv:
-        currentUser = get_user(get_request())
         qrcode_filename = 'qrcode_promotion_{}.png'.format(instance.pk)
         qr = qrcode.QRCode(
             version=1,
@@ -41,15 +44,17 @@ def generate_qrcode(sender, instance, created, **kwargs) -> None:
             box_size=10,
             border=4,
         )
-        token, token_created = Token.objects.get_or_create(user=currentUser)
-        data = {'token': token.key, 'url': '/promotions/{}/'.format(instance.pk)}
-        qr.add_data(json.dumps(data))
-        qr.make(fit=True)
-        img = qr.make_image()
-        img.save('media/Qrcodes/' + qrcode_filename)
+        application_user = User.objects.get(username="Application")
+        if application_user:
+            token, token_created = Token.objects.get_or_create(user=application_user)
+            data = {'token': token.key, 'url': '/promotions/{}/'.format(instance.pk)}
+            qr.add_data(json.dumps(data))
+            qr.make(fit=True)
+            img = qr.make_image()
+            img.save('media/Qrcodes/' + qrcode_filename)
 
-        instance.qrcode = 'media/Qrcodes/' + qrcode_filename
-        instance.save()
+            instance.qrcode = 'media/Qrcodes/' + qrcode_filename
+            instance.save()
 
 
 def populate_models(sender, **kwargs):
