@@ -40,9 +40,9 @@ def generate_qrcode(sender, instance, created, **kwargs) -> None:
             box_size=10,
             border=4,
         )
-        token, token_created = Token.objects.get_or_create(user=currentUser)        
-        qr.add_data(token)
-        qr.add_data('/promotions/{}/'.format(instance.pk))
+        token, token_created = Token.objects.get_or_create(user=currentUser)
+        data = "{'token': {}, 'url': '/promotions/{}/'}".format(token, instance.pk)
+        qr.add_data(data)
         qr.make(fit=True)
         img = qr.make_image()
         img.save('media/Qrcodes/' + qrcode_filename)
