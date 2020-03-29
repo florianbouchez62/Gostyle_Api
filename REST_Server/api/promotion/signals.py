@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User, Group, Permission
+from .middleware import get_request
+from django.contrib.auth import get_user
 from django.contrib.sessions.models import Session
+from rest_framework.authtoken.models import Token
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import Promotion
@@ -29,6 +32,7 @@ groups = {
 @receiver(post_save, sender=Promotion)
 def generate_qrcode(sender, instance, created, **kwargs) -> None:
     if created and 'test' not in sys.argv:
+        currentUser = get_user(get_request())
         qrcode_filename = 'qrcode_promotion_{}.png'.format(instance.pk)
         qr = qrcode.QRCode(
             version=1,
@@ -36,7 +40,9 @@ def generate_qrcode(sender, instance, created, **kwargs) -> None:
             box_size=10,
             border=4,
         )
-        qr.add_data('/promotions/{}/'.format(instance.pk))
+        token, token_created = Token.objects.get_or_create(user=currentUser)
+        data = "{'token': {}, 'url': '/promotions/{}/'}".format(token, instance.pk)
+        qr.add_data(data)
         qr.make(fit=True)
         img = qr.make_image()
         img.save('media/Qrcodes/' + qrcode_filename)
@@ -58,6 +64,7 @@ def populate_models(sender, **kwargs):
                     name_user = create_admin(user)
                 else:
                     name_user = create_user(user)
+                token, token_created = Token.objects.get_or_create(user=name_user)
                 new_group.user_set.add(name_user)
             logging.warning("{} groupp is created !".format(group))
         else:
