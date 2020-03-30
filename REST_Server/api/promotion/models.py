@@ -1,8 +1,14 @@
-from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user
+from .middleware import get_request
+from django.db import models
 import datetime
 import os
+import qrcode
+import json
 
 
 class Promotion(models.Model):
@@ -14,28 +20,6 @@ class Promotion(models.Model):
     image = models.ImageField('Image', upload_to='Images', blank=True, null=True)
     qrcode = models.ImageField(upload_to='Qrcode', blank=True, null=True)
     active = models.BooleanField('Active ?', default=False)
-
-    def clean(self) -> None:
-        cleaned_data = super().clean()
-        if self.start_date <= datetime.date.today():
-            raise ValidationError('The start date must be greater than the current date.')
-        if self.start_date >= self.end_date:
-            raise ValidationError('The end date must be greater than the start date.')
-        if self.active:
-            if self.pk and self.check_empty_fields():
-                raise ValidationError('Image or qrcode ( maybe both ) is missing to activate the promotion.\
-                                       You must uncheck the active checkbox or be sure to have both\
-                                       image and qrcode.')
-            elif not self.image:
-                raise ValidationError('Image is missing to activate the promotion. You must uncheck the active\
-                                        checkbox or be sure to have both image and qrcode.')
-
-        return cleaned_data
-
-    def check_empty_fields(self) -> bool:
-        if not os.path.isfile(str(self.qrcode)) or not self.image:
-            return True
-        return False
 
     def get_promotion_name(self) -> str:
         return self.name
@@ -49,9 +33,45 @@ class Promotion(models.Model):
     def __repr__(self) -> str:
         return self.name + " added."
 
+    def clean(self) -> None:
+        cleaned_data = super().clean()
+        if self.start_date <= datetime.date.today():
+            raise ValidationError('The start date must be greater than the current date.')
+        if self.start_date >= self.end_date:
+            raise ValidationError('The end date must be greater than the start date.')
+        if self.active:
+            if not self.image:
+                raise ValidationError('Image is missing to activate the promotion. You must uncheck the active\
+                                        checkbox or be sure to have image.')
+
+        return cleaned_data
+
     def delete_medias(self) -> None:
         try:
             os.remove(self.image.url)
             os.remove(str(self.qrcode))
         except Exception:
             pass
+
+    def generate_qrcode(self) -> None:
+        qrcode_filename = 'qrcode_promotion_{}.png'.format(self.pk)
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        application_user = User.objects.get(username="Application")
+        current_user = get_user(get_request())
+        user_token = application_user if application_user else current_user
+
+        if user_token:
+            token, token_created = Token.objects.get_or_create(user=user_token)
+            data = {'token': token.key, 'url': '/promotions/{}/'.format(self.pk)}
+            qr.add_data(json.dumps(data))
+            qr.make(fit=True)
+            img = qr.make_image()
+            img.save('media/Qrcodes/' + qrcode_filename)
+
+            self.qrcode = 'media/Qrcodes/' + qrcode_filename
+            self.save()
