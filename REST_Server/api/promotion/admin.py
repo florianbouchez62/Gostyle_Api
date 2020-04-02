@@ -5,7 +5,7 @@ from .models import Promotion
 
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'description', 'start_date', 'end_date', 'percentage', 'active')
+    list_display = ('id', 'code', 'description', 'start_date', 'end_date', 'percentage', 'active')
     list_filter = ('start_date', 'end_date', 'active')
     readonly_fields = ["qrcode_image"]
     exclude = ('qrcode',)
@@ -14,7 +14,7 @@ class PromotionAdmin(admin.ModelAdmin):
         fieldsets = super(PromotionAdmin, self).get_fieldsets(request, obj)
         default_fieldsets = (
             (None, {
-                'fields': ('name', 'description', 'start_date', 'end_date', 'percentage', 'image')
+                'fields': ('code', 'description', 'start_date', 'end_date', 'percentage', 'image')
             }),
         )
         if not obj:
