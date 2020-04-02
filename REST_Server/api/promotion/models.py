@@ -12,7 +12,7 @@ import json
 
 
 class Promotion(models.Model):
-    name = models.CharField("Name", max_length=255, unique=True)
+    code = models.CharField("Promotion code", max_length=255, unique=True)
     description = models.TextField("Description", max_length=1200)
     start_date = models.DateField('Start date')
     end_date = models.DateField('End date')
