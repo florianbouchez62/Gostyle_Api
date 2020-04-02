@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='Promotion',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True, verbose_name='Name')),
+                ('code', models.CharField(max_length=255, unique=True, verbose_name='Name')),
                 ('description', models.TextField(max_length=1200, verbose_name='Description')),
                 ('start_date', models.DateField(verbose_name='Start date')),
                 ('end_date', models.DateField(verbose_name='End date')),
