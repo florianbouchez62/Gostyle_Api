@@ -10,7 +10,7 @@ class PromotionSerializers(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Promotion
-        fields = ('id', 'name', 'description', 'start_date', 'end_date', 'percentage', 'base64_image')
+        fields = ('id', 'code', 'description', 'start_date', 'end_date', 'percentage', 'base64_image')
 
     def get_base64_image(self, obj) -> str:
         try:
