@@ -98,7 +98,7 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 
 # If its the first time, you can run this to load defaults datas.
-python3 manage.py loaddata fixtures/initial_data.json
+python3 manage.py loaddata fixture/initial_data.json
 
 # Now its time to run it.
 python3 manage.py runserver
