@@ -3,7 +3,7 @@
         "model": "promotion.Promotion",
         "pk": 1,
         "fields": {
-            "name": "Iphone 11 Pro Max",
+            "code": "Iphone 11 Pro Max",
             "description": "Regardez moi ce bel Iphone, il est en promo !!!",
             "start_date": "2020-11-01",
             "end_date": "2020-12-01",
@@ -14,7 +14,7 @@
         "model": "promotion.Promotion",
         "pk": 2,
         "fields": {
-            "name": "Poêle Tefal Talent Pro 28 cm",
+            "code": "Poêle Tefal Talent Pro 28 cm",
             "description": "Regardez moi cette bellle Poêle de 28 cm tout de même !",
             "start_date": "2020-12-01",
             "end_date": "2021-01-01",
@@ -25,7 +25,7 @@
         "model": "promotion.Promotion",
         "pk": 3,
         "fields": {
-            "name": "Lot de 3 casseroles Ingénio Expertise 16, 18 et 20 cm + poignée",
+            "code": "Lot de 3 casseroles Ingénio Expertise 16, 18 et 20 cm + poignée",
             "description": "Attention ! Avec cette promotion, impossible de ne pas passer à la casserole !",
             "start_date": "2020-10-01",
             "end_date": "2020-11-01",
@@ -36,7 +36,7 @@
         "model": "promotion.Promotion",
         "pk": 4,
         "fields": {
-            "name": "Roquette 100g.",
+            "code": "Roquette 100g.",
             "description": "La salade préférée des tennismen est en promotion !",
             "start_date": "2020-10-01",
             "end_date": "2020-11-01",
@@ -47,7 +47,7 @@
         "model": "promotion.Promotion",
         "pk": 5,
         "fields": {
-            "name": "10 Pains au chocolat 350g;",
+            "code": "10 Pains au chocolat 350g;",
             "description": "Vite ! Ils se vendent comme des petits pains !",
             "start_date": "2020-09-01",
             "end_date": "2020-10-01",
