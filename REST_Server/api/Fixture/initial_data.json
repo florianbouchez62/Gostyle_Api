@@ -3,55 +3,60 @@
         "model": "promotion.Promotion",
         "pk": 1,
         "fields": {
-            "code": "Iphone 11 Pro Max",
-            "description": "Regardez moi ce bel Iphone, il est en promo !!!",
-            "start_date": "2020-11-01",
-            "end_date": "2020-12-01",
-            "percentage": 10.0
+            "code": "000001",
+            "description": "Suspendisse et risus nec lacus elementum tempor. Curabitur tincidunt neque.!",
+            "start_date": "2025-12-01",
+            "end_date": "2025-12-30",
+            "percentage": "20",
+            "image": "/Images/Fixtures/dog.jpeg"
         }
     },
     {
         "model": "promotion.Promotion",
         "pk": 2,
         "fields": {
-            "code": "Poêle Tefal Talent Pro 28 cm",
-            "description": "Regardez moi cette bellle Poêle de 28 cm tout de même !",
-            "start_date": "2020-12-01",
-            "end_date": "2021-01-01",
-            "percentage": 5.0
+            "code": "000002",
+            "description": "Fusce orci sapien, euismod quis ipsum ut, sagittis consequat ipsum.",
+            "start_date": "2025-01-01",
+            "end_date": "2025-01-20",
+            "percentage": "05",
+            "image": "/Images/Fixtures/men.jpg"
         }
     },
     {
         "model": "promotion.Promotion",
         "pk": 3,
         "fields": {
-            "code": "Lot de 3 casseroles Ingénio Expertise 16, 18 et 20 cm + poignée",
-            "description": "Attention ! Avec cette promotion, impossible de ne pas passer à la casserole !",
-            "start_date": "2020-10-01",
-            "end_date": "2020-11-01",
-            "percentage": 30.0
+            "code": "000003",
+            "description": "In gravida tortor id metus pulvinar, elementum vehicula mauris sodales.",
+            "start_date": "2025-02-01",
+            "end_date": "2025-02-20",
+            "percentage": "30",
+            "image": "/Images/Fixtures/cat.jpeg"
         }
     },
     {
         "model": "promotion.Promotion",
         "pk": 4,
         "fields": {
-            "code": "Roquette 100g.",
-            "description": "La salade préférée des tennismen est en promotion !",
-            "start_date": "2020-10-01",
-            "end_date": "2020-11-01",
-            "percentage": 20.0
+            "code": "000004",
+            "description": "Vestibulum arcu eros, dictum et elit egestas, congue pretium felis.",
+            "start_date": "2025-03-01",
+            "end_date": "2025-03-20",
+            "percentage": "40",
+            "image": "/Images/Fixtures/panda.jpg"
         }
     },
     {
         "model": "promotion.Promotion",
         "pk": 5,
         "fields": {
-            "code": "10 Pains au chocolat 350g;",
-            "description": "Vite ! Ils se vendent comme des petits pains !",
-            "start_date": "2020-09-01",
-            "end_date": "2020-10-01",
-            "percentage": 15.0
+            "code": "000005",
+            "description": "Donec gravida accumsan arcu ac ullamcorper. Morbi sed massa cursus.",
+            "start_date": "2025-04-01",
+            "end_date": "2025-04-20",
+            "percentage": "60",
+            "image": "/Images/Fixtures/bono-douche.jpg"
         }
     }
 ]

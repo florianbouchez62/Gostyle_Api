@@ -62,16 +62,12 @@ class Promotion(models.Model):
             border=4,
         )
         application_user = User.objects.get(username="Application")
-        current_user = get_user(get_request())
-        user_token = application_user if application_user else current_user
-
-        if user_token:
-            token, token_created = Token.objects.get_or_create(user=user_token)
+        if application_user:
+            token, token_created = Token.objects.get_or_create(user=application_user)
             data = {'token': token.key, 'url': '/promotions/{}/'.format(self.pk)}
             qr.add_data(json.dumps(data))
             qr.make(fit=True)
             img = qr.make_image()
             img.save('media/Qrcodes/' + qrcode_filename)
-
             self.qrcode = 'media/Qrcodes/' + qrcode_filename
             self.save()
