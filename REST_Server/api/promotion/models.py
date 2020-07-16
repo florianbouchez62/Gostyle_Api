@@ -69,5 +69,8 @@ class Promotion(models.Model):
             qr.make(fit=True)
             img = qr.make_image()
             img.save('media/Qrcodes/' + qrcode_filename)
-            self.qrcode = 'media/Qrcodes/' + qrcode_filename
+            try:
+                self.qrcode = 'media/Qrcodes/' + qrcode_filename
+            except Exception:
+                print('File does not exist.')
             self.save()
