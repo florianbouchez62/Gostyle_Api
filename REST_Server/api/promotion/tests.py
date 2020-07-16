@@ -18,11 +18,11 @@ class PromotionCreateObjectsTest(TestCase):
 
     def test_number_of_active_objects(self):
         nbActiveItems = Promotion.objects.filter(active=True).count()
-        self.assertEqual(nbActiveItems, 3)
+        self.assertEqual(nbActiveItems, 2)
 
     def test_number_of_not_active_objects(self):
         nbNotActiveObjects = Promotion.objects.filter(active=False).count()
-        self.assertEqual(nbNotActiveObjects, 1)
+        self.assertEqual(nbNotActiveObjects, 2)
 
     def test_object_default_percentage(self):
         promotionObject = Promotion.objects.get(code='test_no_percentage')
