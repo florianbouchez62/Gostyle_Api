@@ -37,9 +37,6 @@ groups = {
 def generate_qrcode(sender, instance, created, **kwargs) -> None:
     if created and 'test' not in sys.argv:
         instance.generate_qrcode()
-    else:
-        if not os.path.isfile(str(instance.qrcode)):
-            instance.generate_qrcode()
 
 
 def populate_models(sender, **kwargs):
