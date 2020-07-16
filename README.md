@@ -80,6 +80,9 @@ python3 manage.py makemigrations
 # After this, migrate it
 python3 manage.py migrate
 
+#You can pre populate the database with
+python3 manage.py loaddata Fixture/inital_data.json
+
 # Now its time to run it.
 python3 manage.py runserver you_ip  your_port
 ```
