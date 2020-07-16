@@ -10,5 +10,5 @@ class PromotionViewSet(viewsets.ModelViewSet):
 
 class TopPromotionViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'head']
-    queryset = Promotion.objects.filter(active=True).order_by('percentage')
+    queryset = Promotion.objects.filter(active=True).order_by('percentage')[0:3]
     serializer_class = PromotionSerializers
