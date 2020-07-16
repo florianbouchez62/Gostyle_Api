@@ -4,14 +4,13 @@ from promotion.models import Promotion
 
 client = Client()
 
-"""
 class PromotionCreateObjectsTest(TestCase):
 
     def setUp(self):
-        Promotion.objects.create(name='test1Active', description='desc', active=True)
-        Promotion.objects.create(name='test2Active', description='desc', active=True)
-        Promotion.objects.create(name='testNotActive', description='desc', active=False)
-        Promotion.objects.create(name='testDefaultActive', description='desc')
+        Promotion.objects.create(name='test1', description='desc', start_date='2025-12-01', end_date='2025-12-30', percentage='50', image='/Images/Fixtures/sweat_nike.jpg', active=True)
+        Promotion.objects.create(name='test_default_notactive', description='desc', start_date='2025-12-01', end_date='2025-12-30', percentage='50', image='/Images/Fixtures/sweat_nike.jpg')
+        Promotion.objects.create(name='test_not_active', description='desc', start_date='2025-12-01', end_date='2025-12-30', percentage='50', image='/Images/Fixtures/sweat_nike.jpg', active=False)
+        Promotion.objects.create(name='test_no_percentage', description='desc', start_date='2025-12-01', end_date='2025-12-30', image='/Images/Fixtures/sweat_nike.jpg', active=True)
 
     def test_everything_is_created(self):
         nbItems = Promotion.objects.all().count()
@@ -19,17 +18,16 @@ class PromotionCreateObjectsTest(TestCase):
 
     def test_number_of_active_objects(self):
         nbActiveItems = Promotion.objects.filter(active=True).count()
-        self.assertEqual(nbActiveItems, 2)
+        self.assertEqual(nbActiveItems, 3)
 
     def test_number_of_not_active_objects(self):
         nbNotActiveObjects = Promotion.objects.filter(active=False).count()
-        self.assertEqual(nbNotActiveObjects, 2)
+        self.assertEqual(nbNotActiveObjects, 1)
 
     def test_object_default_percentage(self):
-        promotionObject = Promotion.objects.get(name='test1Active')
+        promotionObject = Promotion.objects.get(name='test_no_percentage')
         self.assertEqual(promotionObject.get_promotion_percentage(), 0.0)
 
     def test_object_default_active(self):
-        promotionObject = Promotion.objects.get(name='testDefaultActive')
+        promotionObject = Promotion.objects.get(name='test_default_notactive')
         self.assertEqual(promotionObject.get_promotion_active(), False)
-"""
