@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-from os.path import abspath, basename, dirname, join
-import os
+from os.path import abspath, dirname, join
 import sys
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(dirname(abspath(__file__)))
@@ -30,26 +30,23 @@ DEBUG = True
 
 ADMIN_SITE_HEADER = "Gostyle administration"
 
-BASE_URL = "http://127.0.0.1:8000/"
-
 ALLOWED_HOSTS = ['*']
 
 FIXTURE_DIRS = (
-   '/Fixture/',
+   '/fixture/',
 )
 
 # fetch the project_root
 PROJECT_ROOT = dirname(PROJECT_DIR)
 
 # collect media files here
-MEDIA_ROOT = join(PROJECT_ROOT, 'Media')
+MEDIA_ROOT = join(PROJECT_ROOT, 'media')
 
 # the URL for media files
-MEDIA_URL = '/Media/'
+MEDIA_URL = '/media/'
 
 # collect static files here
 STATIC_ROOT = join(PROJECT_ROOT, 'run', 'static')
-
 
 # look for static assets here
 STATICFILES_DIRS = [
@@ -71,11 +68,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'User',
+    'promotion',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', )
+}
+
 MIDDLEWARE = [
+    'promotion.middleware.RequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,33 +113,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if 'test' in sys.argv :
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'msrpmobile',
-           'USER': 'root',
-           'PASSWORD': 'Froubert100!',
-           'HOST': '127.0.0.1',
-           'PORT': '32768',
-       }
-   }
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'msrpmobile',
+            'USER': 'root',
+            'PASSWORD': 'Froubert100!',
+            'HOST': '127.0.0.1',
+            'PORT': '32768',
+        }
+    }
 else:
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'msrpmobile',
-           'USER': 'root',
-           'PASSWORD': 'Froubert100!',
-           'HOST': '127.0.0.1',
-           'PORT': '3306',
-       }
-   }
-
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -151,7 +157,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -164,7 +169,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

@@ -21,3 +21,4 @@ db.sqlite3
 .idea/
 .flake8
 api/api/settings.py
+api/.env

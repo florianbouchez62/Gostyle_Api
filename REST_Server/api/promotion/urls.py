@@ -4,6 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'promotions', views.PromotionViewSet)
+router.register(r'top3-promotions', views.TopPromotionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
