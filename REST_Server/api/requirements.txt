@@ -5,7 +5,7 @@ defusedxml==0.6.0
 Django==3.0.3
 djangorestframework==3.11.0
 freetype-py==2.1.0.post1
-lxml==4.5.0
+lxml==4.6.2
 mysqlclient==1.4.6
 numpy==1.17.1
 Pillow==7.0.0
